@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Accordion = ({ items }) => {
-    const renderedItems = items.map(item => {
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const onTitleClick = (index) => {
+        setActiveIndex(index);
+    };
+    
+    const renderedItems = items.map((item, index) => {
+const active = index === activeIndex ? 'active' : '';
+
         return(
             //using a react fragment instead of a div to work with semantic ui or we're
             //going to have an extra border on our accordion
             <React.Fragment key={item.title}>
-                <div className="title active">
+                <div className={`title ${active}`} onClick={() => onTitleClick(index)}>
                     <i className="dropdown icon"></i>
                     {item.title}
                 </div>
-                <div className="content active">
+                <div className={`content ${active}`}>
                     <p>{item.content}</p>
                 </div>
             </React.Fragment>
