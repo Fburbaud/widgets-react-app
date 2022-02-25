@@ -5,7 +5,7 @@ const Search = () => {
     const [term, setTerm] = useState('programming');
     const [debouncedTerm, setDebouncedTerm] = useState(term);
     const [results, setResults] = useState([]);
-
+    
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedTerm(term);
